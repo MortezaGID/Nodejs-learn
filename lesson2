@@ -1,0 +1,8 @@
+const http = require('http');
+const ip ='127.0.0.1';
+const port =3000;
+http.createServer((req, res) => {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('<p2>PTC Collage</p2></br>name <input type="text" name="name"></br>family<input type="text" name="family"></br><input type="Submit" name="Send">');
+    res.end();
+}).listen(port,ip,() =>{ console.log(`Server Start on http://${ip}:${port}`)});
