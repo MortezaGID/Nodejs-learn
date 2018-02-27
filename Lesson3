@@ -1,0 +1,37 @@
+//import { readFileSync } from 'fs';
+
+const 
+request = require('request'),
+fs = require('fs'),
+
+Options = {
+    method : 'POST',
+    url     : 'https://api.telegram.org/bot------------Token--------------/sendPhoto',
+    body    : {
+        chat_id : -----chat_id----- ,
+        caption : 'ُSalam 🖐',
+        photo   : 'https://www.yelp.com/biz/sunny-days-child-care-gorham'//fs.readFileSync('pics/1.png')
+    },
+    json : true,
+},
+
+Options2 = {
+    method : 'POST',
+    url     : 'https://api.telegram.org/bot------------Token-----------/sendLocation',
+    body    : {
+        chat_id : -----chat_id----- ,
+        latitude : '35.6892',
+        longitude   : '51.3890'
+    },
+    json : true,
+},
+
+send = (OP) => { request(OP, function (error, response, body) {
+    console.log('error:', error); // Print the error if one occurred
+    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    console.log('body:', body); // Print the HTML for the Google homepage.
+  });
+};
+
+send(Options);
+send(Options2);
