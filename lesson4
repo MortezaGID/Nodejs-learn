@@ -1,0 +1,42 @@
+const
+request = require('request'),
+apiurl = 'https://api.telegram.org/bot',
+token = '----Token----',
+mychatid =------chatid------,
+questions = [
+	"What's your name?",
+	"What's your family?",
+	"Why come here?"
+],
+requestOption={
+    method: 'post',
+    url: `${apiurl}${token}/sendmessage`,
+    body: {
+        "chat_id":mychatid,
+        "text":"",
+    },
+    json: true,
+},
+sendMessage = (text) =>{
+    return new Promise(
+            (resolve,reject)=>{
+                    console.log('sendmessage: %s',text);
+                    requestOption.body.text = text;
+                    request(requestOption,  (error, response, body)=> {
+                        if(!error && body && body.ok) {
+                            resolve(body);
+                        }
+                        else{
+                            reject(error,body);
+                        }
+                    });
+            }
+    );
+};
+const run = async function(){
+    for (let i=0;i<3;i++){
+        await sendMessage('>> '+questions[i]);
+    };
+    console.log('done');
+};
+run();
